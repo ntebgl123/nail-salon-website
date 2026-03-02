@@ -529,7 +529,7 @@
     /* Testimonials */
     .parallax-pink-wrap {
       position: relative;
-      background-image: url('static-1.jpg');
+      background-image: url('images/static-1.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -620,14 +620,14 @@
     /* Mobile: layout and spacing (screens under 768px) */
     @media (max-width: 768px) {
       html, body { overflow-x: hidden; max-width: 100vw; }
-      .section { padding: 36px 1.25rem; max-width: 100%; }
+      .section { padding: 40px 1.25rem; max-width: 100%; }
       #about, .services-section, .book-section, .testimonials-section, .parallax-pink-wrap, .contact-strip, footer { max-width: 100vw; width: 100%; overflow-x: hidden; }
-      .services-section { padding-top: 36px; padding-bottom: 36px; }
-      .book-section { padding-top: 36px; padding-bottom: 36px; }
-      .testimonials-section { padding-top: 36px; padding-bottom: 36px; }
+      .services-section { padding-top: 40px; padding-bottom: 40px; }
+      .book-section { padding-top: 40px; padding-bottom: 40px; }
+      .testimonials-section { padding-top: 40px; padding-bottom: 40px; }
       .parallax-pink-wrap { padding-top: 0; padding-bottom: 0; }
-      .contact-strip { padding-top: 36px; padding-bottom: 36px; }
-      footer { padding-top: 36px; padding-bottom: 36px; }
+      .contact-strip { padding-top: 40px; padding-bottom: 40px; }
+      footer { padding-top: 40px; padding-bottom: 40px; }
 
       /* Hero: 100% width, background covers full screen */
       .hero { width: 100%; max-width: 100vw; left: 0; right: 0; }
@@ -645,7 +645,7 @@
       .book-hand-deco { display: none !important; }
       .about-mobile-book { display: inline-block !important; margin-top: 1.25rem; padding: 0.75rem 1.75rem; background: var(--pink); color: var(--white); font-weight: 700; border-radius: 999px; transition: background 0.3s ease, transform 0.2s ease; }
       .about-mobile-book:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
-      #about { padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 36px; padding-bottom: 36px; }
+      #about { padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 40px; padding-bottom: 40px; }
       #about .about-inner { grid-template-columns: 1fr; gap: 1rem; order: 0; }
       #about .about-inner .about-image-stack { order: -1; height: auto; }
       .about-image-stack { height: auto !important; }
@@ -654,13 +654,13 @@
       .about-piece img { max-width: 100%; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box; }
 
       /* Services: single column, each card 100% width */
-      .services-section { padding: 36px 1rem; }
+      .services-section { padding: 40px 1rem; }
       .services-section h2 { font-size: 2rem; margin-bottom: 2rem; }
       .services-grid { display: flex; flex-direction: column; flex-wrap: nowrap; overflow-x: visible; overflow-y: visible; scroll-snap-type: none; -webkit-overflow-scrolling: auto; padding: 0 0 1.5rem; gap: 1rem; min-height: 0; }
       .service-card { flex: 0 0 auto; width: 100%; max-width: 100%; min-width: 0; height: 340px; min-height: 340px; }
       .service-card:hover { flex: 0 0 auto; width: 100%; min-width: 0; max-width: 100%; }
 
-      .book-section { padding: 36px 1.25rem !important; }
+      .book-section { padding: 40px 1.25rem !important; }
       .book-section .book-heading-line { margin-bottom: 2.5rem; }
       .book-inner { gap: 2.5rem; }
       .book-steps { padding-left: 3rem; }
@@ -671,18 +671,18 @@
       .book-cta-card { padding: 2rem 1.5rem; }
       .book-cta-card .btn-pink { padding: 1rem 2rem; font-size: 0.95rem; min-height: 44px; }
       .book-calendly { min-height: 280px; margin-top: 1rem; }
-      .testimonials-section { padding: 36px 0; }
+      .testimonials-section { padding: 40px 0; }
       .testimonials-section .section { padding-top: 0.75rem; }
       .testimonials-section h2 { font-size: 2rem; margin-bottom: 2rem; }
       .testimonial-card { flex: 0 0 280px; padding: 1.5rem; }
       .testimonial-card .quote { font-size: 0.9rem; }
-      .contact-strip { padding: 36px 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
+      .contact-strip { padding: 40px 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
       .contact-strip .btn-strip { padding: 1rem 2rem; font-size: 1rem; min-height: 48px; width: 100%; max-width: 280px; text-align: center; }
-      footer { padding: 36px 1.25rem; }
+      footer { padding: 40px 1.25rem; }
       .footer-brand { font-size: 1.5rem; }
     }
     @media (max-width: 480px) {
-      .section { padding: 36px 1rem; }
+      .section { padding: 40px 1rem; }
       .hero-content h1 { font-size: 2rem; }
       .services-section h2 { font-size: 1.75rem; }
       .service-card { height: 320px; min-height: 320px; }
@@ -723,14 +723,14 @@
 
   <section class="section about reveal" id="about">
     <div class="about-hand" aria-hidden="true">
-      <img src="hand-nails.png" alt="">
+      <img src="images/hand-nails.png" alt="">
     </div>
     <div class="about-inner">
       <div class="about-image-stack">
         <div class="about-collage">
-          <div class="about-piece about-piece-1"><img src="salon-1.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
-          <div class="about-piece about-piece-2"><img src="salon-2.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
-          <div class="about-piece about-piece-3"><img src="salon-3.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+          <div class="about-piece about-piece-1"><img src="images/salon-1.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+          <div class="about-piece about-piece-2"><img src="images/salon-2.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+          <div class="about-piece about-piece-3"><img src="images/salon-3.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
         </div>
       </div>
       <div class="about-content">
@@ -762,14 +762,14 @@
     <p class="label" style="text-align:center;">What We Offer</p>
     <h2>Discover Our Services</h2>
     <div class="services-grid">
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=440&h=380&fit=crop" alt="Manicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $30</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Regular Manicure</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="manicure-2.jpg" alt="Gel manicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $45</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel Manicure</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=440&h=380&fit=crop" alt="Nails"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $55</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Hard Gel Manicure</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=440&h=380&fit=crop" alt="Gel nails"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $60</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel-X</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=440&h=380&fit=crop" alt="Nail extensions"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $65</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Nail Extensions</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="pedicure-1.jpg" alt="Pedicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $40</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Pedicure</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=440&h=380&fit=crop" alt="Gel pedicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $55</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel Pedicure</span></a></div>
-      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=440&h=380&fit=crop" alt="Nail art"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $20</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Nail Art</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-1.jpg" alt="Manicure" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $30</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Regular Manicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-2.jpg" alt="Gel manicure" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $45</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel Manicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-3.jpg" alt="Nails" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $55</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Hard Gel Manicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-1.jpg" alt="Gel nails" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $60</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel-X</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-2.jpg" alt="Nail extensions" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $65</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Nail Extensions</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1664643411326-6c589531be3c?w=800&amp;q=80" alt="Pedicure" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $40</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Pedicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-3.jpg" alt="Gel pedicure" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $55</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel Pedicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="images/manicure-1.jpg" alt="Nail art" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $20</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Nail Art</span></a></div>
     </div>
   </section>
 
@@ -796,7 +796,7 @@
 
   <div class="parallax-pink-wrap">
   <div class="book-hand-deco" aria-hidden="true">
-    <img src="hand-nails.png" alt="">
+    <img src="images/hand-nails.png" alt="">
   </div>
   <section class="testimonials-section">
     <div class="section" style="padding-bottom:2rem;">
