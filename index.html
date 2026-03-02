@@ -620,18 +620,18 @@
     /* Mobile: layout and spacing (screens under 768px) */
     @media (max-width: 768px) {
       html, body { overflow-x: hidden; max-width: 100vw; }
-      .section { padding: 40px 1.25rem; max-width: 100%; }
+      .section { padding: 28px 1.25rem; max-width: 100%; }
       #about, .services-section, .book-section, .testimonials-section, .parallax-pink-wrap, .contact-strip, footer { max-width: 100vw; width: 100%; overflow-x: hidden; }
-      .services-section { padding-top: 40px; padding-bottom: 40px; }
-      .book-section { padding-top: 40px; padding-bottom: 40px; }
-      .testimonials-section { padding-top: 40px; padding-bottom: 40px; }
+      .services-section { padding-top: 28px; padding-bottom: 28px; }
+      .book-section { padding-top: 28px; padding-bottom: 28px; }
+      .testimonials-section { padding-top: 28px; padding-bottom: 28px; }
       .parallax-pink-wrap { padding-top: 0; padding-bottom: 0; }
-      .contact-strip { padding-top: 40px; padding-bottom: 40px; }
-      footer { padding-top: 40px; padding-bottom: 40px; }
+      .contact-strip { padding-top: 28px; padding-bottom: 28px; }
+      footer { padding-top: 28px; padding-bottom: 28px; }
 
-      /* Hero: 100% width, background covers full screen */
+      /* Hero: 100% width; use salon-2.jpg as background (pedicure chairs, premium look) */
       .hero { width: 100%; max-width: 100vw; left: 0; right: 0; }
-      .hero-video-wrap { width: 100%; left: 0; right: 0; }
+      .hero-video-wrap { width: 100%; left: 0; right: 0; background-image: url('salon-2.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat; }
       .hero-video-wrap video { min-width: 100%; width: 100%; object-fit: cover; }
       .hero-overlay { width: 100%; left: 0; right: 0; }
       .hero-content { padding: 1.5rem 1.25rem; max-width: 100%; width: 100%; box-sizing: border-box; }
@@ -645,22 +645,22 @@
       .book-hand-deco { display: none !important; }
       .about-mobile-book { display: inline-block !important; margin-top: 1.25rem; padding: 0.75rem 1.75rem; background: var(--pink); color: var(--white); font-weight: 700; border-radius: 999px; transition: background 0.3s ease, transform 0.2s ease; }
       .about-mobile-book:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
-      #about { padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 40px; padding-bottom: 40px; }
+      #about { padding-left: 20px; padding-right: 20px; padding-top: 28px; padding-bottom: 28px; }
       #about .about-inner { grid-template-columns: 1fr; gap: 1rem; order: 0; }
       #about .about-inner .about-image-stack { order: -1; height: auto; }
       .about-image-stack { height: auto !important; }
-      .about-collage { display: flex !important; flex-direction: column !important; gap: 0.75rem !important; position: static !important; height: auto !important; width: 100% !important; }
+      .about-collage { display: flex !important; flex-direction: column !important; gap: 8px !important; position: static !important; height: auto !important; width: 100% !important; }
       .about-piece { position: static !important; width: 100% !important; height: 200px !important; min-height: 200px !important; top: auto !important; right: auto !important; bottom: auto !important; left: auto !important; transform: none !important; }
       .about-piece img { max-width: 100%; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box; }
 
-      /* Services: single column, each card 100% width */
-      .services-section { padding: 40px 1rem; }
+      /* Services: single column, 16px side padding so cards don't touch edges */
+      .services-section { padding: 28px 16px; }
       .services-section h2 { font-size: 2rem; margin-bottom: 2rem; }
-      .services-grid { display: flex; flex-direction: column; flex-wrap: nowrap; overflow-x: visible; overflow-y: visible; scroll-snap-type: none; -webkit-overflow-scrolling: auto; padding: 0 0 1.5rem; gap: 1rem; min-height: 0; }
+      .services-grid { display: flex; flex-direction: column; flex-wrap: nowrap; overflow-x: visible; overflow-y: visible; scroll-snap-type: none; -webkit-overflow-scrolling: auto; padding: 0 16px 1.5rem; gap: 1rem; min-height: 0; }
       .service-card { flex: 0 0 auto; width: 100%; max-width: 100%; min-width: 0; height: 340px; min-height: 340px; }
       .service-card:hover { flex: 0 0 auto; width: 100%; min-width: 0; max-width: 100%; }
 
-      .book-section { padding: 40px 1.25rem !important; }
+      .book-section { padding: 28px 1.25rem !important; }
       .book-section .book-heading-line { margin-bottom: 2.5rem; }
       .book-inner { gap: 2.5rem; }
       .book-steps { padding-left: 3rem; }
@@ -671,14 +671,14 @@
       .book-cta-card { padding: 2rem 1.5rem; }
       .book-cta-card .btn-pink { padding: 1rem 2rem; font-size: 0.95rem; min-height: 44px; }
       .book-calendly { min-height: 280px; margin-top: 1rem; }
-      .testimonials-section { padding: 40px 0; }
+      .testimonials-section { padding: 28px 0; }
       .testimonials-section .section { padding-top: 0.75rem; }
       .testimonials-section h2 { font-size: 2rem; margin-bottom: 2rem; }
       .testimonial-card { flex: 0 0 280px; padding: 1.5rem; }
       .testimonial-card .quote { font-size: 0.9rem; }
-      .contact-strip { padding: 40px 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
+      .contact-strip { padding: 28px 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
       .contact-strip .btn-strip { padding: 1rem 2rem; font-size: 1rem; min-height: 48px; width: 100%; max-width: 280px; text-align: center; }
-      footer { padding: 40px 1.25rem; }
+      footer { padding: 28px 1.25rem; }
       .footer-brand { font-size: 1.5rem; }
     }
     @media (max-width: 480px) {
