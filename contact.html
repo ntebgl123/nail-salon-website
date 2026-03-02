@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofia's Beauty and Nails — Contact & Book</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root { --pink: #e6a3b6; --pink-light: #f8e2e8; --gold: #c9a96e; --white: #fefefe; --dark: #1a1a1a; --text: #333; --text-muted: #6b6b6b; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Lato', sans-serif; font-weight: 400; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    a { color: inherit; text-decoration: none; }
+
+    .navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2.5rem; background: transparent; transition: background 0.4s ease, box-shadow 0.4s ease; }
+    .navbar.scrolled { background: rgba(254,254,254,0.98); box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+    .navbar .logo { font-family: 'Cormorant Garamond', serif; font-size: 1.75rem; font-weight: 700; color: var(--white); letter-spacing: 0.08em; transition: color 0.3s ease; }
+    .navbar.scrolled .logo { color: var(--text); }
+    .nav-links { display: flex; align-items: center; gap: 2.25rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { font-size: 0.95rem; color: var(--white); transition: color 0.25s ease; }
+    .navbar.scrolled .nav-links a { color: var(--text); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-book { background: var(--pink); color: var(--white); padding: 0.6rem 1.5rem; border-radius: 999px; font-weight: 700; font-size: 0.9rem; transition: background 0.3s ease, transform 0.2s ease; }
+    .nav-links .btn-book:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
+    .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: background 0.3s; }
+    .navbar.scrolled .hamburger span { background: var(--text); }
+    @media (max-width: 768px) {
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 1.5rem 2rem; gap: 1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+      .nav-links.active { display: flex; }
+      .navbar .nav-links a { color: var(--text); }
+      .hamburger { display: flex; }
+    }
+
+    .page-hero {
+      position: relative;
+      min-height: 45vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(180deg, var(--pink-light) 0%, rgba(248,226,232,0.7) 100%);
+      padding: 8rem 2rem 4rem;
+    }
+    .page-hero .hero-label { font-size: 0.8rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.5rem; }
+    .page-hero h1 { font-size: 3rem; color: var(--text); margin: 0 0 0.75rem; position: relative; z-index: 1; }
+    .page-hero .gold-line { width: 64px; height: 2px; background: var(--gold); margin: 0 auto 0.5rem; }
+    .page-hero .subtitle { color: var(--text-muted); font-size: 1.05rem; margin: 0; }
+
+    .contact-section { padding: 100px 2rem; max-width: 1100px; margin: 0 auto; background: var(--white); }
+    .contact-section.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .contact-section.reveal.visible { opacity: 1; transform: translateY(0); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: start; }
+    .contact-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 2.25rem 2rem;
+      box-shadow: 0 20px 50px rgba(184,107,130,0.1), 0 0 0 1px rgba(201,169,110,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      border-radius: 20px 20px 0 0;
+    }
+    .contact-card .contact-label { font-size: 0.75rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.25rem; }
+    .contact-card .contact-row { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+    .contact-card .contact-row:last-of-type { margin-bottom: 0; }
+    .contact-card .contact-icon {
+      width: 40px; height: 40px; min-width: 40px;
+      border-radius: 50%;
+      background: var(--pink-light);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold);
+      font-size: 1rem;
+    }
+    .contact-card .contact-block strong { display: block; color: var(--text); font-size: 0.85rem; margin-bottom: 0.25rem; }
+    .contact-card .contact-block a, .contact-card .contact-block p { color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.5; }
+    .contact-card .contact-block a:hover { color: var(--gold); }
+    .contact-card .map-placeholder {
+      margin-top: 1.5rem;
+      min-height: 180px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--pink-light) 0%, rgba(201,169,110,0.08) 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--text-muted); font-style: italic; font-size: 0.9rem;
+      border: 1px dashed rgba(201,169,110,0.3);
+    }
+    .calendly-card {
+      background: var(--white);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(184,107,130,0.1), 0 0 0 1px rgba(201,169,110,0.12);
+      position: relative;
+    }
+    .calendly-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--pink), var(--gold));
+      z-index: 1;
+    }
+    .contact-calendly { min-width: 0; width: 100%; min-height: 700px; }
+    .contact-calendly .calendly-inline-widget { width: 100% !important; min-width: 100% !important; height: 700px !important; }
+    @media (max-width: 768px) { .contact-inner { grid-template-columns: 1fr; } .contact-calendly { min-height: 600px; } .contact-calendly .calendly-inline-widget { height: 600px !important; } }
+
+    .faq-section { padding: 100px 2rem 120px; margin: 0; max-width: none; width: 100%; background: linear-gradient(180deg, var(--pink-light) 0%, rgba(248,226,232,0.5) 100%); }
+    .faq-section.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .faq-section.reveal.visible { opacity: 1; transform: translateY(0); }
+    .faq-section .faq-label { font-size: 0.8rem; letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase; text-align: center; margin-bottom: 0.5rem; }
+    .faq-section h2 { font-size: 2.5rem; text-align: center; margin: 0 0 0.75rem; color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    .faq-section .faq-heading-line { width: 64px; height: 2px; background: var(--gold); margin: 0 auto 2.5rem; }
+    .faq-list { background: var(--white); border-radius: 16px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.06); max-width: none; width: 100%; }
+    .faq-item { border-bottom: 1px solid rgba(201,169,110,0.15); }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-question {
+      width: 100%;
+      padding: 1.35rem 1.5rem;
+      background: none;
+      border: none;
+      text-align: left;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.25s ease, background 0.2s ease;
+    }
+    .faq-question:hover { color: var(--gold); background: var(--pink-light); }
+    .faq-question::after { content: '+'; font-size: 1.35rem; font-weight: 400; color: var(--gold); }
+    .faq-item.active .faq-question::after { content: '−'; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease-out; }
+    .faq-answer-inner { padding: 0 1.5rem 1.35rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; }
+
+    footer { background: var(--dark); padding: 4rem 2rem 2rem; text-align: center; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; font-weight: 700; color: var(--white); letter-spacing: 0.1em; margin: 0; }
+    .footer-gold-line { width: 60px; height: 2px; background: var(--gold); margin: 1rem auto 1.5rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto 2rem; text-align: left; }
+    .footer-col h4 { font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem; font-family: Lato, sans-serif; }
+    .footer-col p, .footer-col a { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-links { display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-copy { color: rgba(255,255,255,0.45); font-size: 0.85rem; margin-top: 2rem; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-links { align-items: center; } }
+  </style>
+</head>
+<body>
+  <nav class="navbar scrolled" id="navbar">
+    <a href="index.html" class="logo">Sofia's Beauty and Nails</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="btn-book">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-hero">
+    <p class="hero-label">Booking</p>
+    <h1>Book Your Appointment</h1>
+    <div class="gold-line"></div>
+    <p class="subtitle">We can't wait to see you</p>
+  </header>
+
+  <section class="contact-section reveal">
+    <div class="contact-inner">
+      <div class="contact-card">
+        <p class="contact-label">Visit Us</p>
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">📍</div>
+          <div class="contact-block">
+            <strong>Address</strong>
+            <a href="https://maps.google.com/?q=107-29+71st+Ave+Queens+NY+11375" target="_blank" rel="noopener">107-29 71st Ave, Queens, NY 11375</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">📞</div>
+          <div class="contact-block">
+            <strong>Phone</strong>
+            <a href="tel:+19295858585">+1 (929) 585-8585</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">✉️</div>
+          <div class="contact-block">
+            <strong>Email</strong>
+            <a href="mailto:hello@sofiasbeautyandnails.com">hello@sofiasbeautyandnails.com</a>
+          </div>
+        </div>
+        <div class="contact-row">
+          <div class="contact-icon" aria-hidden="true">🕐</div>
+          <div class="contact-block">
+            <strong>Hours</strong>
+            <p>Mon–Sat 10am–7pm<br>Sun 11am–6pm</p>
+          </div>
+        </div>
+        <div class="map-placeholder">Map placeholder</div>
+      </div>
+      <div class="calendly-card">
+        <div class="contact-calendly">
+          <div class="calendly-inline-widget" data-url="YOUR_CALENDLY_LINK_HERE" style="min-width:320px;height:700px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section reveal">
+    <p class="faq-label">Questions</p>
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-heading-line"></div>
+    <div class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question">How do I book?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">You can book using the Calendly widget above, call us, or visit the salon. We'll confirm your appointment as soon as possible.</div></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question">What should I bring?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Just yourself. We provide everything you need. If you have a specific design in mind, feel free to bring reference photos.</div></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question">How long do appointments take?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">A standard manicure is about 45–60 minutes; gel and pedicures may take a bit longer. We'll give you an estimate when you book.</div></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question">Do you take walk-ins?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">We do our best to accommodate walk-ins when we have availability, but we recommend booking in advance to guarantee your preferred time.</div></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question">What is your cancellation policy?</button>
+      <div class="faq-answer"><div class="faq-answer-inner">Please cancel or reschedule at least 24 hours in advance so we can offer the slot to another client. Late cancellations may be subject to a fee.</div></div>
+    </div>
+    </div>
+  </section>
+
+  <footer>
+    <h2 class="footer-brand">Sofia's Beauty and Nails</h2>
+    <div class="footer-gold-line"></div>
+    <div class="footer-grid">
+      <div class="footer-col"><h4>Hours</h4><p>Mon–Sat 10am–7pm</p><p>Sun 11am–6pm</p></div>
+      <div class="footer-col"><h4>Quick Links</h4><div class="footer-links"><a href="index.html">Home</a><a href="services.html">Services</a><a href="gallery.html">Gallery</a><a href="contact.html">Contact</a></div></div>
+      <div class="footer-col"><h4>Follow Us</h4><div class="footer-links"><a href="https://instagram.com/sofiasbeautyandnails" target="_blank" rel="noopener">Instagram</a><a href="https://yelp.com" target="_blank" rel="noopener">Yelp</a></div></div>
+    </div>
+    <p class="footer-copy">© 2025 Sofia's Beauty and Nails. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      var nav = document.getElementById('navbar');
+      function onScroll() { nav.classList.add('scrolled'); }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+    (function() {
+      var btn = document.getElementById('hamburger');
+      var links = document.querySelector('.nav-links');
+      if (btn && links) btn.addEventListener('click', function() { links.classList.toggle('active'); });
+    })();
+    (function() {
+      var els = document.querySelectorAll('.reveal');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      els.forEach(function(el) { observer.observe(el); });
+    })();
+    (function() {
+      var items = document.querySelectorAll('.faq-item');
+      items.forEach(function(item) {
+        var q = item.querySelector('.faq-question');
+        var a = item.querySelector('.faq-answer');
+        if (!q || !a) return;
+        q.addEventListener('click', function() {
+          var open = item.classList.contains('active');
+          items.forEach(function(i) { i.classList.remove('active'); var ans = i.querySelector('.faq-answer'); if (ans) ans.style.maxHeight = ''; });
+          if (!open) { item.classList.add('active'); a.style.maxHeight = a.scrollHeight + 'px'; }
+        });
+      });
+      document.querySelectorAll('.faq-answer').forEach(function(a) { a.style.maxHeight = '0'; });
+    })();
+  </script>
+</body>
+</html>

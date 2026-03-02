@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofia's Beauty and Nails — Home</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --pink: #e6a3b6;
+      --pink-light: #f8e2e8;
+      --gold: #c9a96e;
+      --white: #fefefe;
+      --dark: #1a1a1a;
+      --dark-card: #252525;
+      --text: #333;
+      --text-muted: #6b6b6b;
+    }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Lato', sans-serif; font-weight: 400; color: var(--text); line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    a { color: inherit; text-decoration: none; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.25rem 2.5rem;
+      background: transparent;
+      transition: background 0.4s ease, box-shadow 0.4s ease;
+    }
+    .navbar.scrolled {
+      background: rgba(254, 254, 254, 0.98);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    }
+    .navbar .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: 0.08em;
+      transition: color 0.3s ease;
+    }
+    .navbar.scrolled .logo { color: var(--text); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.25rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-links a {
+      font-size: 0.95rem;
+      color: var(--white);
+      transition: color 0.25s ease;
+    }
+    .navbar.scrolled .nav-links a { color: var(--text); }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links .btn-book {
+      background: var(--pink);
+      color: var(--white);
+      padding: 0.6rem 1.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    .nav-links .btn-book:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--white); transition: background 0.3s; }
+    .navbar.scrolled .hamburger span { background: var(--text); }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 1.5rem 2rem;
+        gap: 1rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      }
+      .nav-links.active { display: flex; }
+      .navbar .nav-links a { color: var(--text); }
+      .hamburger { display: flex; }
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-video-wrap {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-video-wrap video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background: rgba(0,0,0,0.45);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 2rem;
+      opacity: 0;
+      animation: heroFadeIn 1.2s ease-out 0.3s forwards;
+    }
+    @keyframes heroFadeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-content .subtitle {
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      color: var(--gold);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--white);
+      margin: 0 0 1rem;
+      line-height: 1.15;
+      font-weight: 700;
+    }
+     .hero-content .tagline {
+      font-size: 1.15rem;
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
+      margin-bottom: 2rem;
+    }
+    .hero-content .btn-outline {
+      display: inline-block;
+      padding: 0.9rem 2.25rem;
+      border: 2px solid var(--pink);
+      color: var(--white);
+      font-weight: 700;
+      font-size: 0.95rem;
+      border-radius: 999px;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+    .hero-content .btn-outline:hover { background: var(--pink); color: var(--white); }
+    .hero-arrow {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: var(--white);
+      font-size: 1.5rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* Section base */
+    .section { padding: 100px 2rem; max-width: 1200px; margin: 0 auto; }
+    .section.reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+    .section.reveal.visible { opacity: 1; transform: translateY(0); }
+    .label { font-size: 0.7rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem; }
+    .img-placeholder {
+      background: var(--pink-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-style: italic;
+      font-size: 0.9rem;
+    }
+
+    /* About */
+    #about { position: relative; overflow: visible; margin-top: 2.25rem; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
+    .about-hand {
+      position: absolute;
+      left: 50%;
+      top: 120px;
+      width: 600px;
+      max-width: 90vw;
+      z-index: 0;
+      transform-origin: 50% 0%;
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-78%) scale(0.3) rotate(12deg);
+      /* JS updates transform and opacity from scroll progress */
+    }
+    .about-hand img { width: 100%; height: auto; display: block; }
+    .about-image-stack {
+      position: relative;
+      z-index: 2;
+      overflow: visible;
+      height: 480px;
+    }
+    .about-collage {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .about-piece {
+      position: absolute;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.1);
+      background:
+        radial-gradient(ellipse 70% 60% at 30% 40%, rgba(230,163,182,0.45) 0%, transparent 60%),
+        linear-gradient(145deg, var(--pink-light) 0%, #fef8f9 40%, rgba(201,169,110,0.12) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+    .about-piece-1 {
+      top: -38px;
+      right: 34%;
+      width: 52%;
+      height: 200px;
+      z-index: 3;
+    }
+    .about-piece-2 {
+      left: 34%;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 72%;
+      height: 220px;
+      z-index: 2;
+    }
+    .about-piece-3 {
+      bottom: -38px;
+      right: 42%;
+      width: 48%;
+      height: 180px;
+      z-index: 1;
+    }
+    .about-content { position: relative; z-index: 2; }
+    .about-content h2 { font-size: 2.5rem; margin: 0 0 1.5rem; color: var(--text); text-shadow: 0 1px 3px rgba(255,255,255,0.95), 0 0 20px rgba(255,255,255,0.6); }
+    .about-content h2 em { font-style: italic; font-weight: 400; }
+    .about-content p { color: var(--text-muted); margin-bottom: 1rem; text-shadow: 0 1px 2px rgba(255,255,255,0.9), 0 0 12px rgba(255,255,255,0.5); }
+    .about-features-row { display: flex; align-items: flex-start; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+    .about-features { margin: 0; }
+    .about-feature { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 1.25rem; }
+    .about-contact { margin: 0; flex-shrink: 0; }
+    .about-contact-row { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.75rem; color: var(--text); font-size: 0.95rem; font-weight: 600; }
+    .about-contact-row svg { flex-shrink: 0; width: 20px; height: 20px; stroke: #b86b82; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .about-contact-row a { color: var(--text); text-decoration: none; font-weight: 600; }
+    .about-contact-row a:hover { color: #9a4a5f; text-decoration: underline; }
+    .about-feature svg { flex-shrink: 0; width: 24px; height: 24px; stroke: #7a5c2e; stroke-width: 1.5; fill: none; }
+    .about-feature span { font-size: 0.95rem; color: var(--text); font-weight: 500; text-shadow: 0 1px 2px rgba(255,255,255,0.85); }
+    .about-content .btn-pink { display: inline-block; margin-top: 0.5rem; padding: 0.75rem 1.75rem; background: var(--pink); color: var(--white); font-weight: 700; border-radius: 999px; transition: background 0.3s ease, transform 0.2s ease; }
+    .about-content .btn-pink:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
+
+    @media (max-width: 900px) { .about-inner { grid-template-columns: 1fr; } .about-features-row { flex-direction: column; } }
+
+    /* Services */
+    .services-section { background: var(--white); padding: 100px 2rem 100px; color: var(--text); }
+    .services-section .label { color: var(--gold); }
+    .services-section h2 { font-size: 2.75rem; text-align: center; margin: 0 0 3rem; color: var(--text); }
+    .services-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 1rem;
+      overflow-x: auto;
+      padding: 0 2rem 1.5rem;
+      min-height: 400px;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    .services-grid::-webkit-scrollbar { height: 8px; }
+    .services-grid::-webkit-scrollbar-track { background: var(--pink-light); border-radius: 4px; }
+    .services-grid::-webkit-scrollbar-thumb { background: var(--pink); border-radius: 4px; }
+    .service-card {
+      flex: 0 0 220px;
+      width: 220px;
+      min-width: 220px;
+      height: 380px;
+      min-height: 380px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      scroll-snap-align: start;
+      transition: flex 0.4s ease, min-width 0.4s ease, width 0.4s ease;
+      background: var(--pink-light);
+    }
+    .service-card:hover {
+      flex: 0 0 300px;
+      min-width: 300px;
+      width: 300px;
+    }
+    .service-card-link { display: block; width: 100%; height: 100%; text-decoration: none; color: inherit; position: relative; }
+    .service-card .card-img {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+    }
+    .service-card .card-img.img-placeholder {
+      background: linear-gradient(135deg, rgba(230,163,182,0.6) 0%, rgba(201,169,110,0.4) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-style: italic;
+    }
+    .service-card .service-overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(to top, rgba(26,26,26,0.75) 0%, rgba(230,163,182,0.35) 50%, rgba(230,163,182,0.2) 100%);
+      pointer-events: none;
+    }
+    .service-card .service-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1.25rem 1rem;
+      text-align: center;
+      color: #fff;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.5);
+      pointer-events: none;
+    }
+    .service-card .service-price-block {
+      position: absolute;
+      bottom: 4rem;
+      left: 0;
+      right: 0;
+      padding: 0 1rem;
+      text-align: center;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      pointer-events: none;
+    }
+    .service-card:hover .service-price-block {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .service-card .service-price {
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    }
+    .service-card .service-prices-btn {
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border: 2px solid var(--pink);
+      color: var(--pink);
+      background: rgba(255,255,255,0.95);
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 999px;
+      text-decoration: none;
+      pointer-events: auto;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .service-card .service-prices-btn:hover {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    /* How To Book */
+    .book-section {
+      background: linear-gradient(180deg, var(--pink-light) 0%, rgba(248,226,232,0.6) 100%);
+      padding: 120px 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .book-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      opacity: 0.8;
+    }
+    .book-section .label {
+      text-align: center;
+      color: var(--gold);
+      font-size: 0.8rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .book-section h2 {
+      text-align: center;
+      font-size: 2.75rem;
+      margin: 0 0 0.75rem;
+      color: var(--text);
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+    }
+    .book-section .book-heading-line {
+      width: 64px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 3.5rem;
+    }
+    .book-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .book-steps { position: relative; padding-left: 3.75rem; }
+    .book-steps::before {
+      content: '';
+      position: absolute;
+      left: 23px;
+      top: 24px;
+      bottom: 24px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--gold) 0%, rgba(201,169,110,0.4) 100%);
+      border-radius: 2px;
+    }
+    .book-step { position: relative; margin-bottom: 2.25rem; padding: 0.5rem 0; }
+    .book-step:last-child { margin-bottom: 0; }
+    .book-step-num {
+      position: absolute;
+      left: -3.75rem;
+      top: -2px;
+      width: 48px;
+      height: 48px;
+      background: var(--white);
+      color: var(--gold);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      font-family: Lato, sans-serif;
+      box-shadow: 0 4px 12px rgba(201,169,110,0.25);
+    }
+    .book-step h4 { font-size: 1.2rem; margin: 0 0 0.35rem; color: var(--text); font-family: 'Cormorant Garamond', serif; font-weight: 600; }
+    .book-step p { font-size: 0.9rem; color: var(--text-muted); margin: 0; line-height: 1.5; }
+    .book-right { text-align: center; }
+    .book-cta-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 50px rgba(184,107,130,0.12), 0 0 0 1px rgba(201,169,110,0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .book-cta-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--pink));
+      border-radius: 20px 20px 0 0;
+    }
+    .book-cta-card .btn-pink {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 1.1rem 2.75rem;
+      background: linear-gradient(135deg, var(--pink) 0%, #e8a0b4 100%);
+      color: var(--white);
+      font-weight: 700;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      box-shadow: 0 8px 24px rgba(230,163,182,0.45);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      border: none;
+    }
+    .book-cta-card .btn-pink:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(230,163,182,0.5);
+    }
+    .book-cta-note { font-size: 0.85rem; color: var(--text-muted); margin: 0; }
+    .book-calendly { min-height: 380px; background: linear-gradient(135deg, rgba(254,254,254,0.9) 0%, rgba(248,226,232,0.5) 100%); border-radius: 16px; display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-style: italic; border: 1px dashed rgba(201,169,110,0.35); margin-top: 1.5rem; }
+    @media (max-width: 768px) { .book-inner { grid-template-columns: 1fr; } .book-section h2 { font-size: 2.25rem; } }
+
+    /* Testimonials */
+    .parallax-pink-wrap {
+      position: relative;
+      background-image: url('images/static-1.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+    }
+    .parallax-pink-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(248,226,232,0.72) 50%, rgba(248,226,232,0.65) 100%);
+      pointer-events: none;
+    }
+    @media (max-width: 768px) {
+      .parallax-pink-wrap { background-attachment: scroll; }
+      .book-hand-deco {
+        right: -4%;
+        top: -120px;
+        width: min(200px, 45vw);
+      }
+    }
+    .parallax-pink-wrap .testimonials-section,
+    .parallax-pink-wrap .contact-strip { position: relative; z-index: 1; }
+    .book-hand-deco {
+      position: absolute;
+      right: -2%;
+      top: -220px;
+      width: min(320px, 28vw);
+      z-index: 0;
+      pointer-events: none;
+      transform-origin: right bottom;
+      opacity: 0;
+      transform: rotate(55deg);
+      /* JS updates transform and opacity from scroll progress */
+    }
+    .book-hand-deco img { width: 100%; height: auto; display: block; opacity: 0.92; transform: scaleX(-1); }
+    .testimonials-section { background: transparent; padding: 24px 0 2.5rem; }
+    .testimonials-section .section { padding-top: 1rem; }
+    .testimonials-section .label { text-align: center; }
+    .testimonials-section h2 { font-size: 2.5rem; text-align: center; margin: 0 0 3rem; color: var(--text); }
+    .testimonial-wrap { overflow: hidden; width: 100%; }
+    .testimonial-track {
+      display: flex;
+      gap: 1.5rem;
+      width: max-content;
+      animation: scrollTestimonials 70s linear infinite;
+    }
+    @keyframes scrollTestimonials {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonial-card {
+      flex: 0 0 320px;
+      background: #f5f0eb;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    .testimonial-card .stars { color: var(--gold); font-size: 1rem; margin-bottom: 0.75rem; letter-spacing: 2px; }
+    .testimonial-card .quote { font-style: italic; color: var(--text); margin-bottom: 1rem; font-size: 0.95rem; }
+    .testimonial-card .name { font-weight: 700; color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Contact strip */
+    .contact-strip { background: transparent; padding: 2rem 2rem; display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+    .contact-strip .btn-strip {
+      display: inline-block;
+      padding: 1.25rem 2.5rem;
+      font-size: 1.1rem;
+      font-weight: 700;
+      border-radius: 8px;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+    .contact-strip .btn-strip:hover { transform: translateY(-3px); opacity: 0.95; }
+    .contact-strip .btn-pink { background: var(--pink); color: var(--white); }
+    .contact-strip .btn-gold { background: var(--gold); color: var(--dark); }
+
+    /* Footer */
+    footer { background: var(--dark); padding: 4rem 2rem 2rem; text-align: center; }
+    .footer-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.85rem; font-weight: 700; color: var(--white); letter-spacing: 0.1em; margin: 0; }
+    .footer-gold-line { width: 60px; height: 2px; background: var(--gold); margin: 1rem auto 1.5rem; }
+    .footer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 900px; margin: 0 auto 2rem; text-align: left; }
+    .footer-col h4 { font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.75rem; font-family: Lato, sans-serif; }
+    .footer-col p, .footer-col a { color: rgba(255,255,255,0.75); font-size: 0.9rem; }
+    .footer-col a:hover { color: var(--gold); }
+    .footer-links { display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-copy { color: rgba(255,255,255,0.45); font-size: 0.85rem; margin-top: 2rem; }
+    @media (max-width: 768px) { .footer-grid { grid-template-columns: 1fr; text-align: center; } .footer-links { align-items: center; } }
+
+    /* Mobile: layout and spacing */
+    @media (max-width: 768px) {
+      .section { padding: 60px 1.25rem; }
+      .hero-content { padding: 1.5rem 1.25rem; }
+      .hero-content .tagline { font-size: 1rem; margin-bottom: 1.5rem; }
+      .hero-content .btn-outline { padding: 0.85rem 1.75rem; font-size: 0.9rem; min-height: 44px; }
+      .hero-arrow { bottom: 1.25rem; font-size: 1.25rem; }
+      .navbar { padding: 1rem 1.25rem; }
+      #about .about-inner { gap: 2.5rem; }
+      .about-image-stack { height: 320px; }
+      .about-hand { width: 85vw; max-width: 400px; top: 80px; }
+      .services-section { padding: 60px 0 60px; }
+      .services-section h2 { font-size: 2rem; margin-bottom: 2rem; }
+      .services-grid { padding: 0 1rem 1rem; gap: 0.75rem; min-height: 360px; }
+      .service-card { flex: 0 0 200px; min-width: 200px; width: 200px; height: 340px; min-height: 340px; }
+      .service-card:hover { flex: 0 0 200px; min-width: 200px; width: 200px; }
+      .book-section { padding: 60px 1.25rem; }
+      .book-section .book-heading-line { margin-bottom: 2.5rem; }
+      .book-inner { gap: 2.5rem; }
+      .book-steps { padding-left: 3rem; }
+      .book-steps::before { left: 15px; top: 20px; bottom: 20px; }
+      .book-step-num { left: -3rem; width: 40px; height: 40px; font-size: 1rem; }
+      .book-step h4 { font-size: 1.1rem; }
+      .book-step p { font-size: 0.85rem; }
+      .book-cta-card { padding: 2rem 1.5rem; }
+      .book-cta-card .btn-pink { padding: 1rem 2rem; font-size: 0.95rem; min-height: 44px; }
+      .book-calendly { min-height: 280px; margin-top: 1rem; }
+      .testimonials-section { padding: 20px 0 2rem; }
+      .testimonials-section .section { padding-top: 0.75rem; }
+      .testimonials-section h2 { font-size: 2rem; margin-bottom: 2rem; }
+      .testimonial-card { flex: 0 0 280px; padding: 1.5rem; }
+      .testimonial-card .quote { font-size: 0.9rem; }
+      .contact-strip { padding: 1.5rem 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
+      .contact-strip .btn-strip { padding: 1rem 2rem; font-size: 1rem; min-height: 48px; width: 100%; max-width: 280px; text-align: center; }
+      footer { padding: 3rem 1.25rem 2rem; }
+      .footer-brand { font-size: 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .section { padding: 48px 1rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .services-section h2 { font-size: 1.75rem; }
+      .service-card { flex: 0 0 180px; min-width: 180px; width: 180px; height: 320px; min-height: 320px; }
+      .book-section h2 { font-size: 1.9rem; }
+      .book-hand-deco { width: 160px; top: -80px; right: -8%; }
+      .testimonial-card { flex: 0 0 260px; }
+      .testimonials-section h2 { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">Sofia's Beauty and Nails</a>
+    <button class="hamburger" id="hamburger" aria-label="Menu" type="button"><span></span><span></span><span></span></button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="contact.html" class="btn-book">Book Now</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-video-wrap">
+      <video autoplay muted loop playsinline aria-hidden="true">
+        <source src="hero-video.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="subtitle">Welcome To</p>
+      <h1>Sofia's Beauty and Nails</h1>
+      <p class="tagline">Premium nail care in a warm, relaxing environment.</p>
+      <a href="contact.html" class="btn-outline">Book Now</a>
+    </div>
+    <div class="hero-arrow" aria-hidden="true">↓</div>
+  </header>
+
+  <section class="section about reveal" id="about">
+    <div class="about-hand" aria-hidden="true">
+      <img src="images/hand-nails.png" alt="">
+    </div>
+    <div class="about-inner">
+      <div class="about-image-stack">
+        <div class="about-collage">
+          <div class="about-piece about-piece-1"><img src="images/salon-1.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+          <div class="about-piece about-piece-2"><img src="images/salon-2.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+          <div class="about-piece about-piece-3"><img src="images/salon-3.jpg" alt="Salon" style="width:100%; height:100%; object-fit:cover; border-radius:12px;"></div>
+        </div>
+      </div>
+      <div class="about-content">
+        <p class="label">Who We Are</p>
+        <h2>More Than <em>Just Nails</em></h2>
+        <p>Looking for a nail salon that truly has it all? Sofia's Beauty and Nails is your go-to spot. We offer a full range of services to help you look and feel your best including manicures, pedicures, gel extensions, nail art, and spa treatments. Whatever you need, our skilled team is here to deliver. We take pride in making every single client feel welcome, comfortable, and completely satisfied every time they walk through our door.</p>
+        <div class="about-features-row">
+          <div class="about-features">
+            <div class="about-feature">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/></svg>
+              <span>Premium Products</span>
+            </div>
+            <div class="about-feature">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+              <span>Expert Technicians</span>
+            </div>
+            <div class="about-feature">
+              <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+              <span>Relaxing Atmosphere</span>
+            </div>
+          </div>
+          <div class="about-contact">
+            <div class="about-contact-row">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <a href="tel:+19295858585">+1 (929) 585-8585</a>
+            </div>
+            <div class="about-contact-row">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <a href="https://maps.google.com/?q=107-29+71st+Ave+Queens+NY+11375" target="_blank" rel="noopener">107-29 71st Ave, Queens, NY 11375</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <p class="label" style="text-align:center;">What We Offer</p>
+    <h2>Discover Our Services</h2>
+    <div class="services-grid">
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=440&h=380&fit=crop" alt="Manicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $30</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Regular Manicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=440&h=380&fit=crop" alt="Gel manicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $45</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel Manicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=440&h=380&fit=crop" alt="Nails"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $55</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Hard Gel Manicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?w=440&h=380&fit=crop" alt="Gel nails"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $60</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel-X</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1631889993959-41b4e9c6e3c5?w=440&h=380&fit=crop" alt="Nail extensions"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $65</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Nail Extensions</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1610992015732-2449b76344bc?w=440&h=380&fit=crop" alt="Pedicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $40</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Pedicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=440&h=380&fit=crop" alt="Gel pedicure"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $55</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Gel Pedicure</span></a></div>
+      <div class="service-card"><a href="contact.html" class="service-card-link"><img class="card-img" src="https://images.unsplash.com/photo-1597848212624-a19eb35e2651?w=440&h=380&fit=crop" alt="Nail art"><div class="service-overlay"></div><div class="service-price-block"><span class="service-price">From $20</span><a href="contact.html" class="service-prices-btn">prices</a></div><span class="service-label">Nail Art</span></a></div>
+    </div>
+  </section>
+
+  <section class="section book-section reveal" id="book">
+    <p class="label">Booking</p>
+    <h2>Book Your Appointment</h2>
+    <div class="book-heading-line"></div>
+    <div class="book-inner">
+      <div class="book-steps">
+        <div class="book-step"><div class="book-step-num">1</div><h4>Visit our website</h4><p>Head to our contact page</p></div>
+        <div class="book-step"><div class="book-step-num">2</div><h4>Select your service</h4><p>Choose from manicures, pedicures, and more</p></div>
+        <div class="book-step"><div class="book-step-num">3</div><h4>Choose your technician</h4><p>Pick your preferred time slot</p></div>
+        <div class="book-step"><div class="book-step-num">4</div><h4>Confirm your booking</h4><p>We'll confirm your appointment</p></div>
+      </div>
+      <div class="book-right">
+        <div class="book-cta-card">
+          <a href="contact.html" class="btn-pink">Reserve your visit</a>
+          <p class="book-cta-note">Choose your service and time on our contact page</p>
+          <div class="book-calendly">Calendly widget loads on Contact page</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="parallax-pink-wrap">
+  <div class="book-hand-deco" aria-hidden="true">
+    <img src="images/hand-nails.png" alt="">
+  </div>
+  <section class="testimonials-section">
+    <div class="section" style="padding-bottom:2rem;">
+      <p class="label">Reviews</p>
+      <h2>What Our Clients Say</h2>
+    </div>
+    <div class="testimonial-wrap">
+      <div class="testimonial-track">
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"The best nail experience I have had. So relaxing and my nails looked amazing."</p><p class="name">— Jessica</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"Clean, professional, and the gel manicure lasted three weeks. Will definitely be back."</p><p class="name">— Maria</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"Sofia's feels like a little escape. The atmosphere and service are both top-notch."</p><p class="name">— Amanda</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"I have been to many nail salons and this is by far the best. The attention to detail is incredible."</p><p class="name">— Priya</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"My gel nails have never looked this good. The technician was so skilled and sweet."</p><p class="name">— Lauren</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"Good experience overall, the results were really worth it."</p><p class="name">— Destiny</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"The nail art they did for my event was absolutely stunning. Everyone complimented them."</p><p class="name">— Sofia</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"Really lovely salon, only reason it is not 5 stars is I wish they had more color options. But the service was great."</p><p class="name">— Rachel</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"The best nail experience I have had. So relaxing and my nails looked amazing."</p><p class="name">— Jessica</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"Clean, professional, and the gel manicure lasted three weeks. Will definitely be back."</p><p class="name">— Maria</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"Sofia's feels like a little escape. The atmosphere and service are both top-notch."</p><p class="name">— Amanda</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"I have been to many nail salons and this is by far the best. The attention to detail is incredible."</p><p class="name">— Priya</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"My gel nails have never looked this good. The technician was so skilled and sweet."</p><p class="name">— Lauren</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"Good experience overall, the results were really worth it."</p><p class="name">— Destiny</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★★</div><p class="quote">"The nail art they did for my event was absolutely stunning. Everyone complimented them."</p><p class="name">— Sofia</p></div>
+        <div class="testimonial-card"><div class="stars">★★★★☆</div><p class="quote">"Really lovely salon, only reason it is not 5 stars is I wish they had more color options. But the service was great."</p><p class="name">— Rachel</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-strip">
+    <a href="contact.html" class="btn-strip btn-pink">Book Online</a>
+    <a href="tel:+15551234567" class="btn-strip btn-gold">Call Us</a>
+  </section>
+  </div>
+
+  <footer>
+    <h2 class="footer-brand">Sofia's Beauty and Nails</h2>
+    <div class="footer-gold-line"></div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Hours</h4>
+        <p>Mon–Sat 10am–7pm</p>
+        <p>Sun 11am–6pm</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="services.html">Services</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Follow Us</h4>
+        <div class="footer-links">
+          <a href="https://instagram.com/sofiasbeautyandnails" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://yelp.com" target="_blank" rel="noopener">Yelp</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-copy">© 2025 Sofia's Beauty and Nails. All rights reserved.</p>
+  </footer>
+
+  <script>
+    (function() {
+      var nav = document.getElementById('navbar');
+      function onScroll() {
+        if (window.scrollY > 50) nav.classList.add('scrolled');
+        else nav.classList.remove('scrolled');
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+    (function() {
+      var btn = document.getElementById('hamburger');
+      var links = document.querySelector('.nav-links');
+      if (btn && links) btn.addEventListener('click', function() { links.classList.toggle('active'); });
+    })();
+    (function() {
+      var els = document.querySelectorAll('.reveal');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) {
+            e.target.classList.add('visible');
+            if (e.target.classList.contains('services-grid')) return;
+            var cards = e.target.querySelectorAll('.service-card.reveal');
+            cards.forEach(function(card, i) {
+              setTimeout(function() { card.classList.add('visible'); }, i * 80);
+            });
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+      els.forEach(function(el) {
+        if (el.classList.contains('services-grid')) {
+          el.querySelectorAll('.service-card').forEach(function(c) { observer.observe(c); });
+        } else observer.observe(el);
+      });
+    })();
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
