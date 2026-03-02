@@ -217,17 +217,15 @@
     .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
     .about-hand {
       position: absolute;
-      right: 0;
-      bottom: 0;
-      left: auto;
-      top: auto;
+      left: 50%;
+      top: 120px;
       width: 600px;
       max-width: 90vw;
       z-index: 0;
-      transform-origin: 100% 100%;
+      transform-origin: 50% 0%;
       pointer-events: none;
       opacity: 0;
-      transform: scale(0.3) rotate(-12deg);
+      transform: translateX(-78%) scale(0.3) rotate(12deg);
       /* JS updates transform and opacity from scroll progress */
     }
     .about-hand img { width: 100%; height: auto; display: block; }
