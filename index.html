@@ -224,9 +224,9 @@
       z-index: 0;
       transform-origin: 50% 0%;
       pointer-events: none;
-      opacity: 0;
-      transform: translateX(-78%) scale(0.3) rotate(12deg);
-      /* JS updates transform and opacity from scroll progress */
+      /* Starts behind images to the left; JS drives exposure from scroll */
+      opacity: 0.4;
+      transform: translateX(-115%) scale(1) rotate(12deg);
     }
     .about-hand img { width: 100%; height: auto; display: block; }
     .about-image-stack {
