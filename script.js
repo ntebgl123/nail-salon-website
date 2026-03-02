@@ -1,13 +1,12 @@
 (function() {
-  // First hand in the about section
   var aboutSection = document.getElementById('about');
   var aboutHand = aboutSection ? aboutSection.querySelector('.about-hand') : null;
   if (!aboutSection || !aboutHand) return;
 
-  // Initial state: small and invisible
-  aboutHand.style.transform = 'scale(0.3)';
+  // Initial hidden state: set immediately so hand is invisible from the start
+  aboutHand.style.transform = 'translateX(-78%) scale(0.3) rotate(12deg)';
   aboutHand.style.opacity = '0';
-  aboutHand.style.transition = 'transform 1.2s ease, opacity 1.2s ease';
+  aboutHand.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
 
   var hasAnimated = false;
 
@@ -15,18 +14,13 @@
     entries.forEach(function(entry) {
       if (!entry.isIntersecting || hasAnimated) return;
       hasAnimated = true;
-
-      // Animate to full size and fully visible
       requestAnimationFrame(function() {
-        aboutHand.style.transform = 'scale(1)';
-        aboutHand.style.opacity = '1';
+        aboutHand.style.transform = 'translateX(-50%) scale(1) rotate(-30deg)';
+        aboutHand.style.opacity = '0.88';
       });
-
       observer.unobserve(aboutSection);
     });
-  }, {
-    threshold: 0.3
-  });
+  }, { threshold: 0.15 });
 
   observer.observe(aboutSection);
 })();
