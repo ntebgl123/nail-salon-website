@@ -12,14 +12,21 @@
   var endRotate = -30;
   var endOpacity = 0.88;
 
+  function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+
   function setAboutHandProgress(progress) {
     progress = Math.max(0, Math.min(1, progress));
-    var x = startX + (endX - startX) * progress;
     var scale = startScale + (endScale - startScale) * progress;
-    var rot = startRotate + (endRotate - startRotate) * progress;
-    var opacity = endOpacity * progress;
-    aboutHand.style.transform = 'translateX(' + x + '%) scale(' + scale + ') rotate(' + rot + 'deg)';
-    aboutHand.style.opacity = opacity;
+    var opacity = isMobile() ? progress : endOpacity * progress;
+    if (isMobile()) {
+      aboutHand.style.transform = 'translateX(-50%) scale(' + scale + ')';
+      aboutHand.style.opacity = opacity;
+    } else {
+      var x = startX + (endX - startX) * progress;
+      var rot = startRotate + (endRotate - startRotate) * progress;
+      aboutHand.style.transform = 'translateX(' + x + '%) scale(' + scale + ') rotate(' + rot + 'deg)';
+      aboutHand.style.opacity = opacity;
+    }
   }
 
   function updateAbout() {

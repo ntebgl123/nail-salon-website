@@ -640,8 +640,9 @@
       .hero-arrow { bottom: 1.25rem; font-size: 1.25rem; }
       .navbar { padding: 1rem 1.25rem; }
 
-      /* About: hide hand PNG; hide phone/address; stack photos on top, text below; tight gap; Book Now button */
-      .about-hand { display: none !important; }
+      /* About: hand PNG visible at bottom center, 280px wide, scroll grow animation (JS); stack photos on top, text below */
+      .about-hand { display: block !important; position: absolute !important; bottom: 0 !important; left: 50% !important; top: auto !important; width: 280px !important; max-width: 90vw; transform-origin: 50% 100% !important; }
+      .about-hand img { width: 100%; height: auto; display: block; }
       .book-hand-deco { display: none !important; }
       .about-mobile-book { display: inline-block !important; margin-top: 1.25rem; padding: 0.75rem 1.75rem; background: var(--pink); color: var(--white); font-weight: 700; border-radius: 999px; transition: background 0.3s ease, transform 0.2s ease; }
       .about-mobile-book:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
