@@ -620,14 +620,14 @@
     /* Mobile: layout and spacing (screens under 768px) */
     @media (max-width: 768px) {
       html, body { overflow-x: hidden; max-width: 100vw; }
-      .section { padding: 60px 1.25rem; max-width: 100%; }
+      .section { padding: 36px 1.25rem; max-width: 100%; }
       #about, .services-section, .book-section, .testimonials-section, .parallax-pink-wrap, .contact-strip, footer { max-width: 100vw; width: 100%; overflow-x: hidden; }
-      .services-section { padding-top: 60px; padding-bottom: 60px; }
-      .book-section { padding-top: 60px; padding-bottom: 60px; }
-      .testimonials-section { padding-top: 60px; padding-bottom: 60px; }
+      .services-section { padding-top: 36px; padding-bottom: 36px; }
+      .book-section { padding-top: 36px; padding-bottom: 36px; }
+      .testimonials-section { padding-top: 36px; padding-bottom: 36px; }
       .parallax-pink-wrap { padding-top: 0; padding-bottom: 0; }
-      .contact-strip { padding-top: 60px; padding-bottom: 60px; }
-      footer { padding-top: 60px; padding-bottom: 60px; }
+      .contact-strip { padding-top: 36px; padding-bottom: 36px; }
+      footer { padding-top: 36px; padding-bottom: 36px; }
 
       /* Hero: 100% width, background covers full screen */
       .hero { width: 100%; max-width: 100vw; left: 0; right: 0; }
@@ -643,10 +643,9 @@
       /* About: hide hand PNG; hide phone/address; stack photos on top, text below; tight gap; Book Now button */
       .about-hand { display: none !important; }
       .book-hand-deco { display: none !important; }
-      .about-contact { display: none !important; }
       .about-mobile-book { display: inline-block !important; margin-top: 1.25rem; padding: 0.75rem 1.75rem; background: var(--pink); color: var(--white); font-weight: 700; border-radius: 999px; transition: background 0.3s ease, transform 0.2s ease; }
       .about-mobile-book:hover { background: #e8a0b4; color: var(--white); transform: translateY(-2px); }
-      #about { padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 60px; padding-bottom: 60px; }
+      #about { padding-left: 1.25rem; padding-right: 1.25rem; padding-top: 36px; padding-bottom: 36px; }
       #about .about-inner { grid-template-columns: 1fr; gap: 1rem; order: 0; }
       #about .about-inner .about-image-stack { order: -1; height: auto; }
       .about-image-stack { height: auto !important; }
@@ -655,13 +654,13 @@
       .about-piece img { max-width: 100%; width: 100%; height: 100%; object-fit: cover; box-sizing: border-box; }
 
       /* Services: single column, each card 100% width */
-      .services-section { padding: 60px 1rem; }
+      .services-section { padding: 36px 1rem; }
       .services-section h2 { font-size: 2rem; margin-bottom: 2rem; }
       .services-grid { display: flex; flex-direction: column; flex-wrap: nowrap; overflow-x: visible; overflow-y: visible; scroll-snap-type: none; -webkit-overflow-scrolling: auto; padding: 0 0 1.5rem; gap: 1rem; min-height: 0; }
       .service-card { flex: 0 0 auto; width: 100%; max-width: 100%; min-width: 0; height: 340px; min-height: 340px; }
       .service-card:hover { flex: 0 0 auto; width: 100%; min-width: 0; max-width: 100%; }
 
-      .book-section { padding: 60px 1.25rem !important; }
+      .book-section { padding: 36px 1.25rem !important; }
       .book-section .book-heading-line { margin-bottom: 2.5rem; }
       .book-inner { gap: 2.5rem; }
       .book-steps { padding-left: 3rem; }
@@ -672,18 +671,18 @@
       .book-cta-card { padding: 2rem 1.5rem; }
       .book-cta-card .btn-pink { padding: 1rem 2rem; font-size: 0.95rem; min-height: 44px; }
       .book-calendly { min-height: 280px; margin-top: 1rem; }
-      .testimonials-section { padding: 60px 0; }
+      .testimonials-section { padding: 36px 0; }
       .testimonials-section .section { padding-top: 0.75rem; }
       .testimonials-section h2 { font-size: 2rem; margin-bottom: 2rem; }
       .testimonial-card { flex: 0 0 280px; padding: 1.5rem; }
       .testimonial-card .quote { font-size: 0.9rem; }
-      .contact-strip { padding: 1.5rem 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
+      .contact-strip { padding: 36px 1.25rem; gap: 1rem; flex-direction: column; align-items: center; }
       .contact-strip .btn-strip { padding: 1rem 2rem; font-size: 1rem; min-height: 48px; width: 100%; max-width: 280px; text-align: center; }
-      footer { padding: 60px 1.25rem; }
+      footer { padding: 36px 1.25rem; }
       .footer-brand { font-size: 1.5rem; }
     }
     @media (max-width: 480px) {
-      .section { padding: 48px 1rem; }
+      .section { padding: 36px 1rem; }
       .hero-content h1 { font-size: 2rem; }
       .services-section h2 { font-size: 1.75rem; }
       .service-card { height: 320px; min-height: 320px; }
@@ -754,16 +753,6 @@
             </div>
           </div>
           <a href="contact.html" class="btn-pink about-mobile-book">Book Now</a>
-          <div class="about-contact">
-            <div class="about-contact-row">
-              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              <a href="tel:+19295858585">+1 (929) 585-8585</a>
-            </div>
-            <div class="about-contact-row">
-              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              <a href="https://maps.google.com/?q=107-29+71st+Ave+Queens+NY+11375" target="_blank" rel="noopener">107-29 71st Ave, Queens, NY 11375</a>
-            </div>
-          </div>
         </div>
       </div>
     </div>
