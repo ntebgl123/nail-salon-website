@@ -3,26 +3,59 @@
   var aboutHand = aboutSection ? aboutSection.querySelector('.about-hand') : null;
   if (!aboutSection || !aboutHand) return;
 
-  // Initial hidden state: set immediately so hand is invisible from the start
-  aboutHand.style.transform = 'translateX(-78%) scale(0.3) rotate(12deg)';
-  aboutHand.style.opacity = '0';
-  aboutHand.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+  // No transition — scroll directly drives the animation
+  aboutHand.style.transition = 'none';
 
-  var hasAnimated = false;
+  // Start under the 3 images: further left, smaller, rotated in
+  var startX = -92;
+  var endX = -50;
+  var startScale = 0.25;
+  var endScale = 1;
+  var startRotate = 22;
+  var endRotate = -30;
+  var endOpacity = 0.88;
 
-  var observer = new IntersectionObserver(function(entries) {
-    entries.forEach(function(entry) {
-      if (!entry.isIntersecting || hasAnimated) return;
-      hasAnimated = true;
-      requestAnimationFrame(function() {
-        aboutHand.style.transform = 'translateX(-50%) scale(1) rotate(-30deg)';
-        aboutHand.style.opacity = '0.88';
-      });
-      observer.unobserve(aboutSection);
-    });
-  }, { threshold: 0.15 });
+  function setAboutHandProgress(progress) {
+    progress = Math.max(0, Math.min(1, progress));
+    var x = startX + (endX - startX) * progress;
+    var scale = startScale + (endScale - startScale) * progress;
+    var rot = startRotate + (endRotate - startRotate) * progress;
+    var opacity = endOpacity * progress;
+    aboutHand.style.transform = 'translateX(' + x + '%) scale(' + scale + ') rotate(' + rot + 'deg)';
+    aboutHand.style.opacity = opacity;
+  }
 
-  observer.observe(aboutSection);
+  function updateAbout() {
+    ticking = false;
+    var rect = aboutSection.getBoundingClientRect();
+    var vh = window.innerHeight;
+    var visibleStart = vh + vh * 0.35;
+    var visibleEnd = 100;
+    if (rect.top >= visibleStart) {
+      setAboutHandProgress(0);
+      return;
+    }
+    if (rect.top <= visibleEnd) {
+      setAboutHandProgress(1);
+      return;
+    }
+    var progress = 1 - (rect.top - visibleEnd) / (visibleStart - visibleEnd);
+    setAboutHandProgress(progress);
+  }
+
+  var ticking = false;
+  function onScrollAbout() {
+    if (!ticking) {
+      requestAnimationFrame(updateAbout);
+      ticking = true;
+    }
+  }
+
+  setAboutHandProgress(0);
+  window.addEventListener('scroll', onScrollAbout, { passive: true });
+  window.addEventListener('resize', updateAbout);
+  window.addEventListener('load', updateAbout);
+  requestAnimationFrame(function() { requestAnimationFrame(updateAbout); });
 })();
 
 (function() {
