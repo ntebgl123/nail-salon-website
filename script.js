@@ -1,64 +1,34 @@
 (function() {
+  // First hand in the about section
   var aboutSection = document.getElementById('about');
   var aboutHand = aboutSection ? aboutSection.querySelector('.about-hand') : null;
   if (!aboutSection || !aboutHand) return;
 
-  var ticking = false;
-  var startX = -78;
-  var endX = -50;
-  var startScale = 0.3;
-  var endScale = 1;
-  var startRotate = 12;
-  var endRotate = -30;
-  var endOpacity = 0.88;
+  // Initial state: small and invisible
+  aboutHand.style.transform = 'scale(0.3)';
+  aboutHand.style.opacity = '0';
+  aboutHand.style.transition = 'transform 1.2s ease, opacity 1.2s ease';
 
-  function isMobile() { return window.matchMedia('(max-width: 768px)').matches; }
+  var hasAnimated = false;
 
-  function setAboutHandProgress(progress) {
-    progress = Math.max(0, Math.min(1, progress));
-    var scale = startScale + (endScale - startScale) * progress;
-    var opacity = isMobile() ? progress : endOpacity * progress;
-    if (isMobile()) {
-      aboutHand.style.transform = 'translateX(-50%) scale(' + scale + ')';
-      aboutHand.style.opacity = opacity;
-    } else {
-      var x = startX + (endX - startX) * progress;
-      var rot = startRotate + (endRotate - startRotate) * progress;
-      aboutHand.style.transform = 'translateX(' + x + '%) scale(' + scale + ') rotate(' + rot + 'deg)';
-      aboutHand.style.opacity = opacity;
-    }
-  }
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (!entry.isIntersecting || hasAnimated) return;
+      hasAnimated = true;
 
-  function updateAbout() {
-    ticking = false;
-    var rect = aboutSection.getBoundingClientRect();
-    var vh = window.innerHeight;
-    var visibleStart = vh + vh * 0.4;
-    var visibleEnd = 120;
-    if (rect.top >= visibleStart) {
-      setAboutHandProgress(0);
-      return;
-    }
-    if (rect.top <= visibleEnd) {
-      setAboutHandProgress(1);
-      return;
-    }
-    var progress = 1 - (rect.top - visibleEnd) / (visibleStart - visibleEnd);
-    setAboutHandProgress(progress);
-  }
+      // Animate to full size and fully visible
+      requestAnimationFrame(function() {
+        aboutHand.style.transform = 'scale(1)';
+        aboutHand.style.opacity = '1';
+      });
 
-  function onScrollAbout() {
-    if (!ticking) {
-      requestAnimationFrame(updateAbout);
-      ticking = true;
-    }
-  }
+      observer.unobserve(aboutSection);
+    });
+  }, {
+    threshold: 0.3
+  });
 
-  setAboutHandProgress(0);
-  window.addEventListener('scroll', onScrollAbout, { passive: true });
-  window.addEventListener('resize', updateAbout);
-  window.addEventListener('load', updateAbout);
-  requestAnimationFrame(function() { requestAnimationFrame(updateAbout); });
+  observer.observe(aboutSection);
 })();
 
 (function() {
